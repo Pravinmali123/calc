@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<body>
+    <div>
+        <input type="text" name="" id="name" placeholder="name">
+        
+
+        <input type="text" name="" id="surname" placeholder="surname">
+    
+
+        <input type="text" name="" id="fathername" placeholder="father name">
+        
+
+        <button onclick="filldata()">submit</button>
+
+    </div>
+
+
+    <table class="table" border='1'>
+        <tr>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Father Name</td>
+            <td>delete</td>
+            <td>update</td>
+        </tr>
+        <tbody id="getdata"></tbody>
+    </table>
+</body>
+
+
+
+<script>
+    var MyArray = [];
+    var editid = null;
+
+    function filldata() {
+        var name = document.getElementById('name').value;
+    
+        var surname = document.getElementById('surname').value;
+       
+        var fathername = document.getElementById('fathername').value;
+       
+
+
+        var obj = {
+            name,
+            surname,
+            fathername
+        };
+       
+
+        if (name && surname && fathername) {
+            if (editid !== null) {
+                MyArray[editid] = obj;
+                editid = null;
+            } else {
+                MyArray.push(obj);
+            }
+
+            
+               document.getElementById('name').value = '';
+             document.getElementById('surname').value = '';
+            document.getElementById('fathername').value = '';
+            dataview();
+        }
+    }
+
+
+
+
+    function dataview() {
+        var data = '';
+        MyArray.map((item, index) => {
+            data += `<tr>
+                <td>${item.name}</td>
+                <td>${item.surname}</td>
+                <td>${item.fathername}</td>
+                <td><button onclick = "deletedata (${index})">delete</button></td>
+                <td><button onclick = "updatedata (${index})">update</button></td>
+                </tr>`;
+        });
+        document.getElementById('getdata').innerHTML = data;
+    }
+
+
+
+    function deletedata(index) {
+        MyArray.splice(index, 1);
+        dataview();
+    }
+
+
+    function updatedata(index) {
+        editid = index;
+        const finalDataUpdate = MyArray[index];
+        document.getElementById('name').value = finalDataUpdate.name;
+        document.getElementById('surname').value = finalDataUpdate.surname;
+        document.getElementById('fathername').value = finalDataUpdate.fathername;
+    }
+</script>
+
+</html>
