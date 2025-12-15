@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style=" border: 1px solid black; width: 200px;">
+   <input type="text" value="0" style="width: 195px; height: 35px; border: 1px solid black; margin-bottom: 1px; font-size: 20px;" id="dis">
+    <div style=" border: 1px solid black;">
+        <button onclick="clearbtn()" style="margin: 6px;">AC</button>
+        <button onclick="delet()" style="margin: 6px;">DEL</button>
+        <button onclick="buttons('%')" style="margin: 6px;">%</button>
+        <button onclick="buttons('-')"  style="margin: 6px;">-</button>
+
+        <button onclick="buttons('7')"  style="margin: 11px;">7</button>
+        <button onclick="buttons('8')"  style="margin: 11px;">8</button>
+       <button  onclick="buttons('9')" style="margin: 11px;">9</button>
+        <button onclick="buttons('/')"  style="margin: 11px;">/</button>
+
+        <button onclick="buttons('4')"  style="margin: 11px;">4</button>
+        <button onclick="buttons('5')"  style="margin: 11px;">5</button>
+        <button onclick="buttons('6')"  style="margin: 11px;">6</button>
+        <button onclick="buttons('*')"  style="margin: 11px;">*</button>
+
+        <button onclick="buttons('1')"  style="margin: 11px;">1</button> 
+        <button onclick="buttons('2')"  style="margin: 11px;">2</button> 
+        <button onclick="buttons('3')"  style="margin: 11px;">3</button> 
+        <button onclick="buttons('+')"  style="margin: 11px;">+</button>
+
+        <button onclick="buttons('0')"  style="margin: 11px;">0</button>
+        <button onclick="buttons('00')"  style="margin: 8px;">00</button>
+        <button onclick="buttons('.')"  style="margin: 11px;">.</button>
+        <button onclick="calculate('=')"  style="margin: 11px;">=</button>
+    </div>
+    </div>
+
+    <script>
+   var display = document.getElementById("dis");
+
+    function buttons(val) {
+            display.value += val;
+
+        }
+
+   function clearbtn(){
+    display.value = "";
+   }
+   function delet(){
+    display.value = display.value.slice(0,-1)
+   }
+
+   
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch {
+                display.value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
